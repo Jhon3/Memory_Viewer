@@ -187,7 +187,7 @@ std::string pagefaultAnalysis() {
 
 json pagefaultAnalysisJson() {
 
-    string command, dados, ppid, minor, major;
+    string command, dados, pid, minor, major;
     json saida, tmp;
 
     command = "ps h -e -o pid,min_flt,maj_flt";
@@ -197,12 +197,12 @@ json pagefaultAnalysisJson() {
 
     istringstream in(dados);
 
-    while (in >> ppid)
+    while (in >> pid)
     {
         in >> minor;
         in >> major;
 
-        tmp["ppid"] = ppid;
+        tmp["pid"] = pid;
         tmp["minors"] = minor;
         tmp["majors"] = major;
 
